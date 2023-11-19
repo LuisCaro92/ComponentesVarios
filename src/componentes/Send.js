@@ -11,6 +11,31 @@ const Send = () => {
   const [inputValue, setInputValue] = useState("");
   const [asunto, setAsunto] = useState("");
   const [mensaje, setMensaje] = useState("");
+  const [mostrarPrevisual, setMostrarPrevisual] = useState(false);
+
+  const previsual = (
+    <div className=" divide-y-1 divide-gray-500 dark:divide-gray-700 w-80 p-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <h5 className="  first-letter:mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        Asunto:{asunto}
+      </h5>
+      <p className="  first-letter:mt-3 mb-10 font-normal text-gray-500 dark:text-gray-400">
+       Mensaje: {mensaje}
+      </p>
+      <div className="mt-5">
+        <button className="active:scale-[.98] actiove:duration-75 transition-all hover:scale-[1.02] ease-in-out w-40 bg-[#60B478] rounded-lg h-10 border border-solid border-gray-400 text-center text-white font-bold shadow-lg">
+          <span className="shadow-sm">Enviar</span>
+        </button>
+      </div>
+    </div>
+  );
+
+  const handleSelectChange = (selectedOption) => {
+    if (selectedOption && selectedOption.value === true) {
+      setMostrarPrevisual(true);
+    } else {
+      setMostrarPrevisual(false);
+    }
+  };
 
   return (
     <Fragment>
@@ -54,7 +79,7 @@ const Send = () => {
                   <Select
                     className="border-radius-sm"
                     options={previOption}
-                    
+                    onChange={handleSelectChange}
                   />
                 </div>
                 <div className="mt-3 ">
@@ -72,14 +97,7 @@ const Send = () => {
               </form>
             </div>
             <div className="w-full lg:w-1/2  mt-40">
-            <div className="divide-y divide-gray-500 dark:divide-gray-700 w-80 p-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                <h5 className=" mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
-                  {asunto}
-                </h5>
-                <p className=" mt-3 mb-10 font-normal text-gray-500 dark:text-gray-400">
-                  {mensaje}
-                </p>
-              </div>
+              {mostrarPrevisual && previsual}
             </div>
           </div>
         </div>
