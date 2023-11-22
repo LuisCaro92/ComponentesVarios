@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 //Mensaje de previsualizado transformado en una constante.
 const Previsualizacion = ({ asunto, mensaje, enviarCorreo }) => (
-  <div className="none divide-y-5 divide-gray-500 dark:divide-gray-700 w-80 p-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ms:ml-60">
+  <div className="divide-y-5 divide-gray-500 dark:divide-gray-700 w-80 p-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ms:ml-60">
     <h5 className="first-letter:mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
       {asunto}
     </h5>
@@ -60,6 +60,7 @@ const Send = () => {
   const handleBodegasChange = (selectedOptions) => {
     setSelectedBodegas(selectedOptions);
   };
+  
   const validateEmail = (email) => {
     // Validar el formato del correo electrónico
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -80,7 +81,7 @@ const Send = () => {
     } else if (selectedBodegas.length === 0) {
       setError("Por favor, seleccione al menos una opción en 'Para'.");
     } else {
-      // Lógica para enviar el correo
+      // Alerta integrada con sweetalert cuando el mensaje es exitoso.
       Swal.fire({
         title: "Mensaje enviado con exito!",
         text: "Haz clic en el botón!",
